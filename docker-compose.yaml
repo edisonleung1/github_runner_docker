@@ -1,0 +1,13 @@
+services:
+  github-runner:
+    build: .
+    container_name: github-runner
+    env_file:
+      - ./env
+    volumes:
+      - runner-data:/home/runner
+      - /var/run/docker.sock:/var/run/docker.sock  # Enable Docker-in-Docker (optional)
+    restart: unless-stopped
+
+volumes:
+  runner-data:
